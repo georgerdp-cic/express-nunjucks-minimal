@@ -1,5 +1,11 @@
 {% extends "_layouts/default.njk" %}
 
 {% block body %}
-    <div> Text inside the block, why is text inside the block </div>
+
+    <div style="color: red;" > Text inside the block </div>
+    
+    {% for feature in featList %}
+        <div> {{ feature.name }} - {{feature.desc}} </div>
+    {% endfor %}
+
 {% endblock %}
