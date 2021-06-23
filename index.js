@@ -17,6 +17,7 @@ app.get('/', function(req, res) {
     res.render('index', {
         pageTitle: 'Welcome test page',
         headerBodyText: 'This is header body text',
+        email: 'georgerdp@gmail.com',
         featList: [
             {
                 name: 'test',
