@@ -3,6 +3,8 @@ let nunjucks = require('nunjucks');
 const path =require('path');
 
 const app = express();
+app.use(express.urlencoded({extended: true}));
+
 
 nunjucks.configure(path.resolve(__dirname, 'templates') ,{
     autoescape: true,
@@ -32,6 +34,13 @@ app.get('/', function(req, res) {
             }
         ]
     });
+});
+
+app.post('/submitdata', (req, res) => {
+    res.render('views/formdone', {
+        name: req.body.username,
+        surname: req.body.usersurname
+    });  
 });
 
 app.all('*', (req,res) => {
