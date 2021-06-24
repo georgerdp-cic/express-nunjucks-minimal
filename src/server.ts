@@ -1,4 +1,4 @@
-let express = require('express');
+import express from 'express';
 let nunjucks = require('nunjucks');
 const path =require('path');
 
@@ -15,7 +15,7 @@ nunjucks.configure(path.resolve(__dirname, 'templates') ,{
 app.set("view engine", "njk");
 
 
-app.get('/', function(req, res) {
+app.get('/', function (req: any ,res: any) {
     res.render('index', {
         pageTitle: 'Welcome test page',
         headerBodyText: 'This is header body text',
@@ -36,14 +36,14 @@ app.get('/', function(req, res) {
     });
 });
 
-app.post('/submitdata', (req, res) => {
+app.post('/submitdata',  (req: any ,res: any) => {
     res.render('views/formdone', {
         name: req.body.username,
         surname: req.body.usersurname
     });  
 });
 
-app.all('*', (req,res) => {
+app.all('*', (req: any ,res: any) => {
     res.json({title: 'We are having an issue ... you should not be here.'})
 });
 
