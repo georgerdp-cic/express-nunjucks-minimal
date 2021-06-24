@@ -34,6 +34,10 @@ app.get('/', function(req, res) {
     });
 });
 
+app.all('*', (req,res) => {
+    res.json({title: 'We are having an issue ... you should not be here.'})
+});
+
 app.listen(3000, () => {
     console.log('Server is up.');
 });
