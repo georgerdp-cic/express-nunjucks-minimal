@@ -11,7 +11,7 @@ app.use(express_1.default.urlencoded({ extended: true }));
 nunjucks.configure(path.resolve(__dirname, 'templates'), {
     autoescape: true,
     express: app,
-    watch: true
+    watch: process.env.NODE_ENV === 'development'
 });
 app.set("view engine", "njk");
 app.get('/', function (req, res) {
