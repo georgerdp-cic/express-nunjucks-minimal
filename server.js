@@ -15,7 +15,7 @@ nunjucks.configure(path.resolve(__dirname, 'templates'), {
 });
 app.set("view engine", "njk");
 app.get('/', function (req, res) {
-    res.render('index', {
+    res.render(path.join('index'), {
         pageTitle: 'Welcome test page',
         headerBodyText: 'This is header body text',
         email: 'georgerdp@gmail.com',
@@ -35,7 +35,7 @@ app.get('/', function (req, res) {
     });
 });
 app.post('/submitdata', (req, res) => {
-    res.render('views/formdone', {
+    res.render(path.join(__dirname, '/templates/views/formdone'), {
         name: req.body.username,
         surname: req.body.usersurname
     });
