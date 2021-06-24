@@ -8,14 +8,17 @@ let nunjucks = require('nunjucks');
 const path = require('path');
 const app = express_1.default();
 app.use(express_1.default.urlencoded({ extended: true }));
-nunjucks.configure(path.resolve(__dirname, 'templates'), {
+if (process.env.NODE_ENV) {
+    console.log('[DEBUG] Is development environment', process.env.NODE_ENV === 'development');
+}
+nunjucks.configure(path.join(__dirname, '../templates'), {
     autoescape: true,
     express: app,
     watch: process.env.NODE_ENV === 'development'
 });
 app.set("view engine", "njk");
 app.get('/', function (req, res) {
-    res.render(path.join('index'), {
+    res.render('views/index', {
         pageTitle: 'Welcome test page',
         headerBodyText: 'This is header body text',
         email: 'georgerdp@gmail.com',
@@ -35,7 +38,7 @@ app.get('/', function (req, res) {
     });
 });
 app.post('/submitdata', (req, res) => {
-    res.render(path.join(__dirname, '/templates/views/formdone'), {
+    res.render('views/formdone', {
         name: req.body.username,
         surname: req.body.usersurname
     });

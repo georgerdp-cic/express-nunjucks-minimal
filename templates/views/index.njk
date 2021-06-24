@@ -1,7 +1,7 @@
 
-{% from "_macros/genericmacros.njk" import howAreYouToday  %}
+{% from "../_macros/genericmacros.njk" import howAreYouToday  %}
 
-{% extends "_layouts/default.njk" %}
+{% extends "../_layouts/default.njk" %}
 
 {% block body %}
 
@@ -13,8 +13,8 @@
 
     {{ howAreYouToday('Happy', 'Because I can play with nunjucks') }}
 
-    {% include "_partials/dummyform.njk" %}
+    {% include "../_partials/dummyform.njk" %}
 
-    {% include "_partials/includesexample.njk" %}
+    {% include "../_partials/includesexample.njk" %}
 
 {% endblock %}
