@@ -49,6 +49,6 @@ app.all('*', (req: any ,res: any) => {
     res.json({title: 'We are having an issue ... you should not be here.'})
 });
 
-app.listen(3000, () => {
+app.listen(8080, () => {
     console.log('Server is up.');
 });
