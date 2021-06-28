@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rdpapp
+spec:
+  selector:
+    matchLabels:
+      app: rdpapp
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: rdpapp
+    spec:
+      containers:
+      - name: rdpapp
+        image: rdpnun:v1
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 8080
+            protocol: TCP
