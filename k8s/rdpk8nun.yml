@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: rdpapp
-        image: rdpnun:v1
+        image: rdpnun:v2
         imagePullPolicy: Never
         resources:
           limits:
@@ -23,3 +23,9 @@ spec:
         ports:
           - containerPort: 8080
             protocol: TCP
+        env:
+        - name: MESSAGE
+          valueFrom:
+            configMapKeyRef:
+              name: rdpappcf
+              key: rdpEnvConf

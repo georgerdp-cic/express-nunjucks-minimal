@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rdpappcf
+  namespace: default
+data:
+  rdpEnvConf: Ce iti mai place viata

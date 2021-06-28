@@ -47,5 +47,7 @@ app.all('*', (req, res) => {
     res.json({ title: 'We are having an issue ... you should not be here.' });
 });
 app.listen(8080, () => {
+    console.log(process.env);
+    console.log('this is a rollout');
     console.log('Server is up.');
 });
