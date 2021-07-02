@@ -1,4 +1,5 @@
 <form action="/submitdata" method="post">
+  <input name="_csrf" type="hidden" value={{ cToken }} />
   <label for="name">First name:</label><br>
   <input type="text" id="fname" name="username" value=""><br>
   <label for="lname">Last name:</label><br>

@@ -1,9 +1,19 @@
 import express from 'express';
+
+let csurf = require("csurf");
+var cookieParser = require('cookie-parser');
+
+
+
 let nunjucks = require('nunjucks');
 const path =require('path');
 
 const app = express();
+
+let csrfP = csurf({cookie: true});
+
 app.use(express.urlencoded({extended: true}));
+app.use(cookieParser());
 
 if (process.env.NODE_ENV) {
     console.log('[DEBUG] Is development environment', process.env.NODE_ENV === 'development');
@@ -17,11 +27,15 @@ nunjucks.configure(path.join(__dirname, '../templates'),{
 
 app.set("view engine", "njk");
 
-app.get('/', function (req: any ,res: any) {
+app.get('/', csrfP, function (req: any ,res: any) {
+
+    console.log(req.csrfToken(), 'ce');
+
     res.render('views/index', {
         pageTitle: 'Welcome test page',
         headerBodyText: 'This is header body text',
         email: 'georgerdp@gmail.com',
+        cToken: req.csrfToken(),
         featList: [
             {
                 name: 'test',
@@ -38,7 +52,7 @@ app.get('/', function (req: any ,res: any) {
     });
 });
 
-app.post('/submitdata',  (req: any ,res: any) => {
+app.post('/submitdata', csrfP,  (req: any ,res: any) => {
     res.render('views/formdone', {
         name: req.body.username,
         surname: req.body.usersurname
