@@ -5,7 +5,7 @@
 
 {% block body %}
 
-    <div style="color: red;" > Text inside the block </div>
+    <div style="color: red;" > Text inside the block. Req nr: {{testSessionData}}</div>
     
     {% for feature in featList %}
         <div> {{ feature.name }} - {{feature.desc}} </div>

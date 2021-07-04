@@ -13,7 +13,11 @@ const app = express_1.default();
 let csrfP = csurf({ cookie: true });
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(session({ secret: 'wowxxx' }));
+app.use(session({ secret: 'Secrets should go in environment variables. I guess you know that already.',
+    resave: true,
+    cookie: { secure: false, httpOnly: true },
+    saveUninitialized: false
+}));
 if (process.env.NODE_ENV) {
     console.log('[DEBUG] Is development environment', process.env.NODE_ENV === 'development');
 }
@@ -24,11 +28,19 @@ nunjucks.configure(path.join(__dirname, '../templates'), {
 });
 app.set("view engine", "njk");
 app.get('/', csrfP, function (req, res) {
+    //Save state in session
+    if (req.session.cd) {
+        req.session.cd++;
+    }
+    else {
+        req.session.cd = 1;
+    }
     res.render('views/index', {
         pageTitle: 'Welcome test page',
         headerBodyText: 'This is header body text',
         email: 'georgerdp@gmail.com',
         cToken: req.csrfToken(),
+        testSessionData: req.session.cd,
         featList: [
             {
                 name: 'test',
@@ -49,6 +61,14 @@ app.post('/submitdata', csrfP, (req, res) => {
         name: req.body.username,
         surname: req.body.usersurname
     });
+});
+// error handler
+app.use((err, req, res, next) => {
+    if (err.code !== 'EBADCSRFTOKEN')
+        return next(err);
+    // handle CSRF token errors here
+    res.status(403);
+    res.send('We are not happy that you are messing up with the csrf token. bro');
 });
 app.all('*', (req, res) => {
     res.json({ title: 'We are having an issue ... you should not be here.' });
