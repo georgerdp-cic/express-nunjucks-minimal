@@ -2,8 +2,7 @@ import express from 'express';
 
 let csurf = require("csurf");
 var cookieParser = require('cookie-parser');
-
-
+var session = require('express-session');
 
 let nunjucks = require('nunjucks');
 const path =require('path');
@@ -14,6 +13,7 @@ let csrfP = csurf({cookie: true});
 
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+app.use(session({secret: 'wowxxx'}))
 
 if (process.env.NODE_ENV) {
     console.log('[DEBUG] Is development environment', process.env.NODE_ENV === 'development');
@@ -28,8 +28,6 @@ nunjucks.configure(path.join(__dirname, '../templates'),{
 app.set("view engine", "njk");
 
 app.get('/', csrfP, function (req: any ,res: any) {
-
-    console.log(req.csrfToken(), 'ce');
 
     res.render('views/index', {
         pageTitle: 'Welcome test page',

@@ -6,12 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 let csurf = require("csurf");
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 let nunjucks = require('nunjucks');
 const path = require('path');
 const app = express_1.default();
 let csrfP = csurf({ cookie: true });
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(session({ secret: 'wowxxx' }));
 if (process.env.NODE_ENV) {
     console.log('[DEBUG] Is development environment', process.env.NODE_ENV === 'development');
 }
