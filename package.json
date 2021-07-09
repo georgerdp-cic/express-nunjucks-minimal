@@ -7,7 +7,6 @@
     "build": "tsc && gulp build",
     "start": "npm run build && node dist/server.js NODE_ENV=production",
     "dev": "concurrently \"nodemon --config nodemon.json src/server.ts\" \"gulp dev\" ",
-    "dev:debug": "nodemon --config nodemon.json --inspect-brk src/server.ts",
     "test": "jest"
   },
   "author": "",

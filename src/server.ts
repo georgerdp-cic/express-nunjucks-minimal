@@ -15,17 +15,18 @@ const csrfP = csurf({ cookie: true });
 //Middleware 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(session({ secret: 'Secrets should go in environment variables. I guess you know that already.',
+app.use(session({
+    secret: 'Secrets should go in environment variables. I guess you know that already.',
     resave: true,
     cookie: { secure: false, httpOnly: true },
-    saveUninitialized: false 
+    saveUninitialized: false
 }));
 
 //Serve static files
 app.use(express.static(path.join(__dirname + '/public')));
 
 //Template engine configuration
-nunjucks.configure( isDev ? path.join(__dirname, '../templates') :  path.join(__dirname, './templates'), {
+nunjucks.configure(isDev ? path.join(__dirname, '../templates') : path.join(__dirname, './templates'), {
     autoescape: true,
     express: app,
     watch: isDev
@@ -37,19 +38,11 @@ app.set("view engine", "njk");
 //Routes 
 app.get('/', csrfP, function (req: any, res: any) {
 
-    //Save state in session
-    if (req.session.cd) {
-        req.session.cd++; 
-    } else {
-        req.session.cd = 1;
-    }
-
     res.render('views/index', {
         pageTitle: 'Welcome test page',
         headerBodyText: 'This is header body text',
         email: 'georgerdp@gmail.com',
         cToken: req.csrfToken(),
-        testSessionData: req.session.cd,
         featList: [
             {
                 name: 'test',
@@ -79,11 +72,11 @@ app.use((err: any, req: any, res: any, next: any) => {
 
     // handle CSRF token errors here
     res.status(403)
-    res.send('We are not happy that you are messing up with the csrf token. bro');
+    res.send('Something is wrong.');
 });
 
 app.all('*', (req: any, res: any) => {
-    res.json({ title: 'We are having an issue ... you should not be here.' })
+    res.json({ title: '(Something is wrong. Template with back button would be useful here)' })
 });
 
 app.listen(8080, () => {

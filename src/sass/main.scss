@@ -1,18 +1,5 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
-$text-color: #fff;
 
 body {
-  font: 100% $font-stack;
-  appearance: none;
-  //color: $primary-color;
   display: flex;
   flex-flow: column nowrap;
-  background: $primary-color;
-  justify-content: space-around;
-
-  p,div,h1,h2,h3 {
-      //color: $text-color;
-      font-size: 30px;
-  }
 }

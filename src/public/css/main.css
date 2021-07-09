@@ -1,1 +1,1 @@
-body{font:100% Helvetica,sans-serif;-webkit-appearance:none;-moz-appearance:none;appearance:none;display:flex;flex-flow:column nowrap;background:#333;justify-content:space-around}body div,body h1,body h2,body h3,body p{font-size:30px}
+body{display:flex;flex-flow:column nowrap}
