@@ -6,14 +6,12 @@ Live reload using nodemon
 How to start? 
 1. npm i 
 
-2. npm run dev or npm run start
+2. npm run dev
 
-3. Go to http://localhost:3000/
+3 .npm run build / npm run start
 
 ### Info
-- This project has now TYPESCRIPT and TSLINT configured
-- Example of macros, template extension and includes (see template folder)
-- Now there is a form demo 
+- This project has now TYPESCRIPT, nodemon and TSLINT configured
 
 ### New Features
 Dockerfile 

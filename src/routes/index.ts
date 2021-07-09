@@ -8,21 +8,18 @@ router.get('/', csrfP, function (req: any, res: any) {
     
     res.render('views/index', {
         pageTitle: 'title',
-        headerBodyText: 'Welcome v0.1',
-        email: 'georgerdp@gmail.com',
+        headerBodyText: 'Welcome to v0.01',
+        email: 'george.crisan-cic@ibm.com',
         cToken: req.csrfToken(),
         featList: [
             {
-                name: 'test',
-                desc: 'does this and that'
+                name: 'Browser-sync',
+                desc: 'Live reload on change (templates and scss)'
             }, {
-                name: 'test2',
-                desc: 'does this and that'
+                name: 'Nodemon',
+                desc: 'Server reload'
             },
-            {
-                name: 'test3',
-                desc: 'does this and that'
-            }
+
         ]
     });
 });

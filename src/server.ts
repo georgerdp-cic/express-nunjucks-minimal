@@ -54,4 +54,4 @@ app.listen(8080, () => {
     console.log(`[Info] Server running in ${message} environment`);
 });
 
-process.once('SIGUSR2', () => process.kill(process.pid, 'SIGUSR2'));
+process.once('SIGUSR2', function () { process.kill(process.pid, 'SIGUSR2'); });
