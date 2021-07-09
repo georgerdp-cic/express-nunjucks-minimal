@@ -1,15 +1,18 @@
-import express from 'express';
 
-let csurf = require("csurf");
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-
-let nunjucks = require('nunjucks');
+//Imports
+const express = require("express");
+const csurf = require("csurf");
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const nunjucks = require('nunjucks');
 const path = require('path');
 
+//Constants
+const isDev = process.env.NODE_ENV === 'development';
 const app = express();
+const csrfP = csurf({ cookie: true });
 
-let csrfP = csurf({ cookie: true });
+//Middleware 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -19,18 +22,20 @@ app.use(session({ secret: 'Secrets should go in environment variables. I guess y
     saveUninitialized: false 
 }));
 
-if (process.env.NODE_ENV) {
-    console.log('[DEBUG] Is development environment', process.env.NODE_ENV === 'development');
-}
+//Serve static files
+app.use(express.static(path.join(__dirname + '/public')));
 
-nunjucks.configure(path.join(__dirname, '../templates'), {
+//Template engine configuration
+nunjucks.configure( isDev ? path.join(__dirname, '../templates') :  path.join(__dirname, './templates'), {
     autoescape: true,
     express: app,
-    watch: process.env.NODE_ENV === 'development'
+    watch: isDev
 });
 
 app.set("view engine", "njk");
 
+
+//Routes 
 app.get('/', csrfP, function (req: any, res: any) {
 
     //Save state in session
@@ -83,5 +88,6 @@ app.all('*', (req: any, res: any) => {
 });
 
 app.listen(8080, () => {
-    console.log('Server is up.');
+    const message = process.env.NODE_ENV === 'development' ? 'DEV' : 'production';
+    console.log(`[Info] Server running in ${message} environment`);
 });
