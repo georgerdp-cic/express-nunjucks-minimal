@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc && gulp build",
     "start": "npm run build && node dist/server.js NODE_ENV=production",
-    "dev": "concurrently \"nodemon --config nodemon.json src/server.ts\" \"gulp dev\" ",
+    "dev": "concurrently \"nodemon --config nodemon.json src/server.ts\" \"gulp dev\" --kill-others",
     "test": "jest"
   },
   "author": "",
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@types/express": "^4.17.1",
     "@types/node": "^15.12.4",
+    "browser-sync": "^2.27.4",
     "chokidar": "^3.5.2",
     "concurrently": "^6.2.0",
     "del": "^6.0.0",

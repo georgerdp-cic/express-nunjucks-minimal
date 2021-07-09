@@ -39,7 +39,7 @@ app.set("view engine", "njk");
 app.get('/', csrfP, function (req: any, res: any) {
 
     res.render('views/index', {
-        pageTitle: 'Welcome test page',
+        pageTitle: 'Welcome',
         headerBodyText: 'This is header body text',
         email: 'georgerdp@gmail.com',
         cToken: req.csrfToken(),
@@ -83,3 +83,5 @@ app.listen(8080, () => {
     const message = process.env.NODE_ENV === 'development' ? 'DEV' : 'production';
     console.log(`[Info] Server running in ${message} environment`);
 });
+
+process.once('SIGUSR2', () => process.kill(process.pid, 'SIGUSR2'));

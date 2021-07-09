@@ -2,6 +2,7 @@ const { src, dest, task, series, watch } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
+const browserSync = require('browser-sync').create();
 const del = require('del');
 
 //Child tasks
@@ -28,12 +29,22 @@ task('clean', () => {
     ]);
 });
 
-task('watch-css', () => {
-    watch(['./src/sass/*.scss'], series('generate-css'));
-    //watch(['./src/js/*.js'], series('generate-js'));
+task('watch-all', () => {
+    browserSync.init({
+        port: 3002,
+        proxy: 'http://localhost:8080/',
+        reloadDelay: 1000 
+      });
+    watch(['./**/*.ts', './**/*.njk']).on("change", browserSync.reload);
+    watch(['./src/sass/*.scss'], series('generate-css')).on("change", browserSync.reload);
 });
+
+task('sync-browser', function() {
+    
+  });
+  
 
 //Primary tasks
 task('build', series(['clean', 'generate-css', 'copy-public', 'copy-templates']));
 
-task('dev', series(['clean', 'generate-css', 'watch-css']));
+task('dev', series(['clean', 'generate-css', 'watch-all']));
