@@ -13,7 +13,6 @@ const app = express();
 const csrfP = csurf({ cookie: true });
 
 //Middleware 
-
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({ secret: 'Secrets should go in environment variables. I guess you know that already.',

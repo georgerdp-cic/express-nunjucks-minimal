@@ -1,10 +1,10 @@
-const {src, dest, task, series} = require('gulp');
+const {src, dest, task, series, watch, parallel} = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
+const nodemon = require('gulp-nodemon');
 //const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
-
 
 //Child tasks
 task('generate-css', () => {
@@ -30,8 +30,12 @@ task('clean', () => {
     ]);
 });
 
+task('watch-css', () => {
+    watch(['./src/sass/*.scss'], series('generate-css'));
+    //watch(['./src/js/*.js'], series('generate-js'));
+});
 
 //Primary tasks
 task('build', series(['clean', 'generate-css', 'copy-public', 'copy-templates']));
 
-task('dev', series(['clean', 'generate-css']));
+task('dev', series(['clean', 'generate-css', 'watch-css' ]));
