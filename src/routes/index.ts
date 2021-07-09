@@ -5,10 +5,10 @@ const router = Router();
 const csrfP = csurf({ cookie: true });
 
 router.get('/', csrfP, function (req: any, res: any) {
-
+    
     res.render('views/index', {
-        pageTitle: 'Welcome',
-        headerBodyText: 'This is header body text',
+        pageTitle: 'title',
+        headerBodyText: 'Welcome v0.1',
         email: 'georgerdp@gmail.com',
         cToken: req.csrfToken(),
         featList: [

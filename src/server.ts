@@ -1,7 +1,6 @@
 
 //Imports
 import express from 'express';
-import csurf from 'csurf';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import nunjucks from 'nunjucks';
@@ -11,7 +10,6 @@ import indexRoute from './routes';
 //Constants
 const isDev = process.env.NODE_ENV === 'development';
 const app = express();
-const csrfP = csurf({ cookie: true });
 
 //Middleware 
 app.use(express.urlencoded({ extended: true }));
@@ -35,11 +33,8 @@ nunjucks.configure(isDev ? path.join(__dirname, '../templates') : path.join(__di
 
 app.set("view engine", "njk");
 
-
 //Routes 
 app.use('/', indexRoute);
-
-
 
 // error handler
 app.use((err: any, req: any, res: any, next: any) => {
