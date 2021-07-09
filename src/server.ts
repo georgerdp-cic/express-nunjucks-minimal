@@ -1,11 +1,12 @@
 
 //Imports
-const express = require("express");
-const csurf = require("csurf");
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const nunjucks = require('nunjucks');
-const path = require('path');
+import express from 'express';
+import csurf from 'csurf';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import nunjucks from 'nunjucks';
+import path from 'path';
+import indexRoute from './routes';
 
 //Constants
 const isDev = process.env.NODE_ENV === 'development';
@@ -36,35 +37,9 @@ app.set("view engine", "njk");
 
 
 //Routes 
-app.get('/', csrfP, function (req: any, res: any) {
+app.use('/', indexRoute);
 
-    res.render('views/index', {
-        pageTitle: 'Welcome',
-        headerBodyText: 'This is header body text',
-        email: 'georgerdp@gmail.com',
-        cToken: req.csrfToken(),
-        featList: [
-            {
-                name: 'test',
-                desc: 'does this and that'
-            }, {
-                name: 'test2',
-                desc: 'does this and that'
-            },
-            {
-                name: 'test3',
-                desc: 'does this and that'
-            }
-        ]
-    });
-});
 
-app.post('/submitdata', csrfP, (req: any, res: any) => {
-    res.render('views/formdone', {
-        name: req.body.username,
-        surname: req.body.usersurname
-    });
-});
 
 // error handler
 app.use((err: any, req: any, res: any, next: any) => {
