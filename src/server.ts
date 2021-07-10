@@ -63,7 +63,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 app.all('*', (req: express.Request, res: express.Response) => {
-    res.json({ title: '(Something is wrong. Template with back button would be useful here)' })
+    res.json({ title: '(Something is wrong! Template with back button would be useful here.)' })
 });
 
 app.listen(8080, () => {
