@@ -14,6 +14,13 @@ task('generate-css', () => {
         .pipe(dest('./src/public/css/'));
 });
 
+task('generate-js', () => {
+    //To do:
+    // Generate minified uglified client javascript
+    // Import gov style system
+    
+});
+
 task('copy-public', () => {
     return src('./src/public/**').pipe(dest('./dist/public/'));
 });

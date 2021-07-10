@@ -4,11 +4,11 @@ const router = Router();
 
 const csrfP = csurf({ cookie: true });
 
-router.get('/', csrfP, function (req: any, res: any) {
+router.get('/', csrfP, function (req, res) {
     
     res.render('views/index', {
         pageTitle: 'title',
-        headerBodyText: 'Welcome to v0.01',
+        headerBodyText: 'Welcome to v0.0.1',
         email: 'george.crisan-cic@ibm.com',
         cToken: req.csrfToken(),
         featList: [
@@ -24,7 +24,7 @@ router.get('/', csrfP, function (req: any, res: any) {
     });
 });
 
-router.post('/submitdata', csrfP, (req: any, res: any) => {
+router.post('/submitdata', csrfP, (req, res) => {
     res.render('views/formdone', {
         name: req.body.username,
         surname: req.body.usersurname
