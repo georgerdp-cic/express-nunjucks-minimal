@@ -30,8 +30,8 @@
 
 
     {% block bodyContant %}
-      <div class="govuk-width-container">
-        <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing">
+      <div style="min-height: 100vh; display: flex;" class="govuk-width-container">
+        <main style="flex: 1;" class="govuk-main-wrapper govuk-main-wrapper--auto-spacing">
         <h1> Index page </h1>  
         </main>
       </div>
@@ -64,12 +64,5 @@
     
     <script rel="stylesheet" src="./js/all.js"></script>
     <script rel="stylesheet" src="./js/main.js"></script>
-    <script>
-      document.body.className = (
-        (document.body.className)
-        ? document.body.className + ' js-enabled'
-        : 'js-enabled');
-    </script>
-
   </body>
 </html>

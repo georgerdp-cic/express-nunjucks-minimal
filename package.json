@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "govuk-frontend": "^3.13.0",
+    "helmet": "^4.6.0",
     "nunjucks": "^3.2.3"
   },
   "devDependencies": {

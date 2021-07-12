@@ -6,6 +6,7 @@ import session from 'express-session';
 import nunjucks from 'nunjucks';
 import path from 'path';
 import indexRoute from './routes';
+import helmet from 'helmet';
 
 //Interfaces
 
@@ -27,6 +28,9 @@ const paths: IPaths = {
 };
 
 const app = express();
+
+//Set helment
+app.use(helmet());
 
 //Middleware 
 app.use(express.urlencoded({ extended: true }));
