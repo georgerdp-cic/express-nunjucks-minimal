@@ -2,11 +2,14 @@
 {% from "..//components/footer/macro.njk" import govukFooter %}
 
 <!DOCTYPE html>
+
 <html lan="eng">
-    {% include "_partials/head.njk" %}
-    <body>
-        {% block header %}
-            {{ govukHeader({
+
+  {% include "_partials/head.njk" %}
+
+  <body>
+    {% block header %}
+      {{ govukHeader({
     homepageUrl: "#",
     containerClasses: "govuk-width-container",
     serviceName: "Index Page",
@@ -23,10 +26,19 @@
       }
     ]
   }) }}
-        {% endblock %}
+    {% endblock %}
 
-        {% block footer %}
-  {{ govukFooter({
+
+    {% block bodyContant %}
+      <div class="govuk-width-container">
+        <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing">
+        <h1> Index page </h1>  
+        </main>
+      </div>
+    {% endblock %}
+
+    {% block footer %}
+      {{ govukFooter({
     meta: {
       items: [
         {
@@ -48,17 +60,16 @@
       ]
     }
   }) }}
-{% endblock %}
+    {% endblock %}
+    
+    <script rel="stylesheet" src="./js/all.js"></script>
+    <script rel="stylesheet" src="./js/main.js"></script>
+    <script>
+      document.body.className = (
+        (document.body.className)
+        ? document.body.className + ' js-enabled'
+        : 'js-enabled');
+    </script>
 
-
-            </div>
-            <script rel="stylesheet" src="./js/all.js"></script>
-            <script rel="stylesheet" src="./js/main.js"></script>
-            <script>
-                document.body.className = (
-                    (document.body.className)
-                    ? document.body.className + ' js-enabled'
-                    : 'js-enabled');
-            </script>
-        </body>
-    </html>
+  </body>
+</html>
