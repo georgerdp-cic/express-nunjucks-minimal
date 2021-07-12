@@ -1,17 +1,40 @@
+{% from "../components/header/macro.njk" import govukHeader %}
 <!DOCTYPE html>
 <html lan="eng">
     {% include "_partials/head.njk" %}
     <body>
+        {% block header %}
+            {{ govukHeader({
+    homepageUrl: "#",
+    containerClasses: "app-width-container",
+    serviceName: "Service name",
+    serviceUrl: "#",
+    navigation: [
+      {
+        href: "#1",
+        text: "Navigation item 1",
+        active: true
+      },
+      {
+        href: "#2",
+        text: "Navigation item 2"
+      },
+      {
+        href: "#3",
+        text: "Navigation item 3"
+      }
+    ]
+  }) }}
+        {% endblock %}
 
-        <h1> {{ headerBodyText }} </h1> 
-        
-        <div class="main-wrapper">
-            {% block body %}
-            {% endblock %}
-        </div>
-
-          <script rel="stylesheet" src="./js/all.js"></script>
-         <script rel="stylesheet" src="./js/main.js"></script>
-        <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-    </body>
-</html>
+            </div>
+            <script rel="stylesheet" src="./js/all.js"></script>
+            <script rel="stylesheet" src="./js/main.js"></script>
+            <script>
+                document.body.className = (
+                    (document.body.className)
+                    ? document.body.className + ' js-enabled'
+                    : 'js-enabled');
+            </script>
+        </body>
+    </html>

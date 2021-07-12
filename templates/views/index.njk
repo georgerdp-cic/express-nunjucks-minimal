@@ -1,11 +1,1 @@
 {% extends "../_layouts/default.njk" %}
-
-{% block body %}
-    
-    {% for feature in featList %}
-        <div> {{ feature.name }} - {{feature.desc}} </div>
-    {% endfor %}
-
-    {% include "../_partials/demoaccordion.njk" %} 
-
-{% endblock %}
