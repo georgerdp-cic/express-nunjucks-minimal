@@ -1,6 +1,3 @@
-
-{% from "../_macros/genericmacros.njk" import howAreYouToday  %}
-
 {% extends "../_layouts/default.njk" %}
 
 {% block body %}
@@ -9,8 +6,6 @@
         <div> {{ feature.name }} - {{feature.desc}} </div>
     {% endfor %}
 
-    {{ howAreYouToday('Happy', 'Because I am alive! :D') }}
-
-    {% include "../_partials/dummyform.njk" %}
+    {% include "../_partials/demoaccordion.njk" %} 
 
 {% endblock %}
