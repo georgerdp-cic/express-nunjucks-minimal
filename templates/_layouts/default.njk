@@ -1,4 +1,6 @@
 {% from "../components/header/macro.njk" import govukHeader %}
+{% from "..//components/footer/macro.njk" import govukFooter %}
+
 <!DOCTYPE html>
 <html lan="eng">
     {% include "_partials/head.njk" %}
@@ -6,26 +8,48 @@
         {% block header %}
             {{ govukHeader({
     homepageUrl: "#",
-    containerClasses: "app-width-container",
-    serviceName: "Service name",
+    containerClasses: "govuk-width-container",
+    serviceName: "Index Page",
     serviceUrl: "#",
     navigation: [
       {
-        href: "#1",
+        href: "/",
         text: "Navigation item 1",
         active: true
       },
       {
-        href: "#2",
+        href: "/",
         text: "Navigation item 2"
-      },
-      {
-        href: "#3",
-        text: "Navigation item 3"
       }
     ]
   }) }}
         {% endblock %}
+
+        {% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "#1",
+          text: "Help"
+        },
+        {
+          href: "#2",
+          text: "Cookies"
+        },
+        {
+          href: "#3",
+          text: "Contact"
+        },
+        {
+          href: "#4",
+          text: "Terms and conditions"
+        }
+      ]
+    }
+  }) }}
+{% endblock %}
+
 
             </div>
             <script rel="stylesheet" src="./js/all.js"></script>
