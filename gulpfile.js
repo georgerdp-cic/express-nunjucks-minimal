@@ -40,10 +40,10 @@ task('watch-all', () => {
     browserSync.init({
         port: 3002,
         proxy: 'http://localhost:8080/',
-        reloadDelay: 1000
+        reloadDelay: 500
       });
 
-    watch(['./**/*.ts', './**/*.njk']).on("change", browserSync.reload);
+    watch(['./**/*.ts', './**/*.njk']).on("change", () => setTimeout(() => browserSync.reload(), 1000));
     
     watch(['./src/sass/*.scss'], series('generate-css')).on("change", browserSync.reload);
 });

@@ -11,8 +11,7 @@
   "watch": [
     "src"
   ],
-  "delay": "500",
-
+  "delay": "200",
   "ext": "ts",
   "restartable": "rs",
 
