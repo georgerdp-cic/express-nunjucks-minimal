@@ -17,25 +17,27 @@
     navigation: [
       {
         href: "/",
-        text: "Navigation item 1",
-        active: true
+        text: "Home",
+        active: "home" == tabName 
       },
       {
-        href: "/",
-        text: "Navigation item 2"
+        href: "/demo-form",
+        text: "Demo form",
+        active: "demoform" == tabName 
       }
     ]
   }) }}
     {% endblock %}
 
-
-    {% block bodyContant %}
-      <div style="min-height: 100vh; display: flex;" class="govuk-width-container">
-        <main style="flex: 1;" class="govuk-main-wrapper govuk-main-wrapper--auto-spacing">
-        <h1> Index page </h1>  
-        </main>
-      </div>
-    {% endblock %}
+    <div style="min-height: 70vh; display: flex;" class="govuk-width-container">
+      <main style="flex: 1;" class="govuk-main-wrapper govuk-main-wrapper--auto-spacing">
+        {% block bodycontent %}
+          <h1>
+            Index page
+          </h1>
+        {% endblock %}
+      </main>
+    </div>
 
     {% block footer %}
       {{ govukFooter({
@@ -61,8 +63,9 @@
     }
   }) }}
     {% endblock %}
-    
+
     <script rel="stylesheet" src="./js/all.js"></script>
     <script rel="stylesheet" src="./js/main.js"></script>
   </body>
+
 </html>

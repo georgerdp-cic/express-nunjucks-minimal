@@ -42,7 +42,9 @@ task('watch-all', () => {
         proxy: 'http://localhost:8080/',
         reloadDelay: 1000
       });
+
     watch(['./**/*.ts', './**/*.njk']).on("change", browserSync.reload);
+    
     watch(['./src/sass/*.scss'], series('generate-css')).on("change", browserSync.reload);
 });
   

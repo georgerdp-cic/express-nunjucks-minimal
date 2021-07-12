@@ -5,11 +5,12 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import nunjucks from 'nunjucks';
 import path from 'path';
-import indexRoute from './routes';
 import helmet from 'helmet';
 
-//Interfaces
+import indexRoute from './routes';
+import demoform from './routes/demoform';
 
+//Interfaces
 interface IPaths {
    templates: {
        dev: string;
@@ -30,7 +31,7 @@ const paths: IPaths = {
 const app = express();
 
 //Set helment
-app.use(helmet());
+//app.use(helmet());
 
 //Middleware 
 app.use(express.urlencoded({ extended: true }));
@@ -56,6 +57,7 @@ app.set("view engine", "njk");
 
 //Routes 
 app.use('/', indexRoute);
+app.use('/', demoform);
 
 // error handler
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {

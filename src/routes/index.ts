@@ -10,7 +10,8 @@ router.get('/', csrfP, function (req, res) {
         pageTitle: 'title',
         headerBodyText: 'Welcome to v0.0.1',
         email: 'george.crisan-cic@ibm.com',
-        cToken: req.csrfToken(),
+        //cToken: req.csrfToken(),
+        tabName: 'home',
         featList: [
             {
                 name: 'Browser-sync',
@@ -21,13 +22,6 @@ router.get('/', csrfP, function (req, res) {
             },
 
         ]
-    });
-});
-
-router.post('/submitdata', csrfP, (req, res) => {
-    res.render('views/formdone', {
-        name: req.body.username,
-        surname: req.body.usersurname
     });
 });
 
