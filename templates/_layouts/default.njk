@@ -9,24 +9,25 @@
 
   <body>
     {% block header %}
-      {{ govukHeader({
-    homepageUrl: "#",
-    containerClasses: "govuk-width-container",
-    serviceName: "Index Page",
-    serviceUrl: "#",
-    navigation: [
-      {
-        href: "/",
-        text: "Home",
-        active: "home" == tabName 
-      },
-      {
-        href: "/demo-form",
-        text: "Demo form",
-        active: "demoform" == tabName 
-      }
-    ]
-  }) }}
+      {{
+        govukHeader({
+        homepageUrl: "#",
+        containerClasses: "govuk-width-container",
+        serviceName: "Index Page",
+        serviceUrl: "#",
+        navigation: [
+          {
+            href: "/",
+            text: "Home",
+            active: "home" == tabName 
+          },
+          {
+            href: "/demo-form",
+            text: "Demo form",
+            active: "demoform" == tabName 
+          }]
+        })
+      }}
     {% endblock %}
 
     <div style="min-height: 70vh; display: flex;" class="govuk-width-container">
@@ -40,28 +41,29 @@
     </div>
 
     {% block footer %}
-      {{ govukFooter({
-    meta: {
-      items: [
-        {
-          href: "#1",
-          text: "Help"
-        },
-        {
-          href: "#2",
-          text: "Cookies"
-        },
-        {
-          href: "#3",
-          text: "Contact"
-        },
-        {
-          href: "#4",
-          text: "Terms and conditions"
-        }
-      ]
-    }
-  }) }}
+      {{
+        govukFooter({
+          meta: {
+          items: [
+            {
+              href: "#1",
+              text: "Help"
+            },
+            {
+              href: "#2",
+              text: "Cookies"
+            },
+            {
+              href: "#3",
+              text: "Contact"
+            },
+            {
+              href: "#4",
+              text: "Terms and conditions"
+            }]
+          }
+        })
+      }}
     {% endblock %}
 
     <script rel="stylesheet" src="./js/all.js"></script>
