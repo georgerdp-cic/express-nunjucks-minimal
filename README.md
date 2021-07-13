@@ -18,8 +18,8 @@ Dockerfile
 
 Do:
 
-docker build -t nodenun:v1 .  
-docker run -p 3001:8080 -d nodenun:v1
+docker build -t govdbs:v1  .
+docker run -p 3001:8080 -d govdbs:v1
 
 Then go to:
 
