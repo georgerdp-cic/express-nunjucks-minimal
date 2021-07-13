@@ -8,7 +8,7 @@ How to start?
 
 2. For development <-- npm run dev -->
 
-3. For production <-- npm run build  -->  This will create ai directory .dist with everything ready.
+3. For production <-- npm run build  -->  This will create a directory "dist" with code ready for deployment.
 
 ### Info
 - This project has now Typescript for the server side files, nodemon and Tslint configured
