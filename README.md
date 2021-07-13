@@ -18,8 +18,8 @@ Dockerfile
 
 Do:
 
-docker build -t govdbs:v1  .
-docker run -p 3001:8080 -d govdbs:v1
+docker build -t nodefeminimal:v1  .
+docker run -p 3001:8080 -d nodefeminimal:v1
 
 Then go to:
 
@@ -28,7 +28,6 @@ http://0.0.0.0:3001/
 ### To do:
 
 // Generate minified, uglified, transpiled client javascript code
-// Import gov style system
 // Set up the lint process
 // Create some demos TDD 
 // Create unit tests
