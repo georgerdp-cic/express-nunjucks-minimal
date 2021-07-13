@@ -1,8 +1,13 @@
+(function () {
 
-if (document) {
-    document.body.className = ((document.body.className)
-        ? document.body.className + ' js-enabled'
-        : 'js-enabled');
-}
+    if (document) {
+        document.body.className = ((document.body.className)
+            ? document.body.className + ' js-enabled'
+            : 'js-enabled');
+    }
 
-window.GOVUKFrontend.initAll(); 
+    window.GOVUKFrontend.initAll();
+    
+    console.log('Production ready.');
+
+})();

@@ -6,6 +6,7 @@ const uglify = require("gulp-uglify");
 const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();
 const del = require('del');
+const pipeline = require('readable-stream').pipeline;
 
 //Child tasks
 task('generate-css', () => 
@@ -17,10 +18,12 @@ task('generate-css', () =>
 );
 
 task('generate-js', () => 
-    src('./src/clientjs/*.js')
-        .pipe(concat('prod.min.js'))
-        .pipe(uglify())
-        .pipe(dest('./src/public/js'))
+    pipeline(
+        src('./src/clientjs/*.js'),
+        concat('prod.min.js'),
+        uglify(),
+        dest('./src/public/js')
+    )
 );
 
 task('copy-public', () => {
