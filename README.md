@@ -4,15 +4,16 @@
 Live reload using nodemon and browser-sync
 
 How to start? 
-1. npm i 
+1. Install dependecies with <-- npm ci --> Is important to use npm ci instead of npm i or npm install. This will make sure that the packages are installed without vulnerabilities .
 
-2. npm run dev
+2. For development <-- npm run dev -->
 
-3 .npm run build / npm run start
+3. For production <-- .npm run build  -->  This will create ai directory .dist with everything ready.
 
 ### Info
 - This project has now Typescript, nodemon and Tslint configured
 - Unit test with jest and jsdom
+
 ### New Features
 Dockerfile 
 
@@ -27,7 +28,7 @@ http://0.0.0.0:3001/
 
 ### To do:
 
-// Generate minified, uglified, transpiled client javascript code
+
 // Set up the lint process
 // Create some demos TDD 
 // Create unit tests
