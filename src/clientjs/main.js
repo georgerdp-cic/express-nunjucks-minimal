@@ -5,4 +5,6 @@ if (document) {
         : 'js-enabled');
 }
 
-window.GOVUKFrontend.initAll();
+console.log('test 4');
+
+window.GOVUKFrontend.initAll(); 
