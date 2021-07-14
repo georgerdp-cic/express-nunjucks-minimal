@@ -1,4 +1,4 @@
-(function () {
+(function mainJS() {
 
     if (document) {
         document.body.className = ((document.body.className)
@@ -7,7 +7,9 @@
     }
 
     window.GOVUKFrontend.initAll();
+
     
-    console.log('Production ready.');
+    
+    console.log('Production ready!');
 
 })();

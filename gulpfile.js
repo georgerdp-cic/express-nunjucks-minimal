@@ -49,7 +49,7 @@ const cleanSourcemap = () =>
 
 
 
-const compilets = () => {
+const compileTS = () => {
     const tsProject = ts.createProject('tsconfig.json');
 
     const result = tsProject.src().pipe(tsProject());
@@ -64,7 +64,7 @@ const watchAll = () => {
         reloadDelay: 300
     });
 
-    watch(['./src/**/*.ts'], series(compilets));
+    watch(['./src/**/*.ts'], series(compileTS));
     watch(['./src/serverjs/**/*.js', './**/*.njk']).on("change", browserSync.reload);
     watch(['./src/sass/**/*.scss'], series(generateCss)).on("change", browserSync.reload);
     watch(['./src/clientjs/**/*.js'], series(generateJs)).on("change", browserSync.reload);
@@ -72,6 +72,6 @@ const watchAll = () => {
 };
 
 //Primary tasks
-exports.build = series(clean, compilets, parallel(generateCss, generateJs), copyPublic, copyTemplates, copyServer, cleanSourcemap);
+exports.build = series(clean, compileTS, parallel(generateCss, generateJs), copyPublic, copyTemplates, copyServer, cleanSourcemap);
 
-exports.dev = series(clean, compilets, parallel(generateCss, generateJs), watchAll);
+exports.dev = series(clean, compileTS, parallel(generateCss, generateJs), watchAll);
