@@ -51,6 +51,13 @@ task('clean-js', () => {
     ]);
 });
 
+task('clean-sourcemap', () => {
+    return del([
+        './dist/public/css/main.css.map',
+        './dist/public/js/prod.min.js.map'
+    ]);
+});
+
 task('watch-all', () => {
     browserSync.init({
         port: 3002,
@@ -64,6 +71,6 @@ task('watch-all', () => {
 });
 
 //Primary tasks
-task('build', series(['clean', 'generate-css', 'generate-js', 'copy-public', 'copy-templates']));
+task('build', series(['clean', 'generate-css', 'generate-js', 'copy-public', 'copy-templates', 'clean-sourcemap']));
 
 task('dev', series(['clean', 'generate-css', 'generate-js', 'watch-all']));
