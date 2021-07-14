@@ -7,13 +7,16 @@ const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();
 const del = require('del');
 const pipeline = require('readable-stream').pipeline;
+var sourcemaps = require('gulp-sourcemaps');
 
 //Child tasks
 task('generate-css', () => 
     src('./src/sass/**/*.scss')
+        .pipe(sourcemaps.init())
         .pipe(sass({ style: 'compressed' }).on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(sourcemaps.write('.'))
         .pipe(dest('./src/public/css/'))
 );
 
