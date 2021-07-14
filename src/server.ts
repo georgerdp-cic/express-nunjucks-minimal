@@ -31,7 +31,9 @@ const paths: IPaths = {
 const app = express();
 
 //Set helment
-//app.use(helmet());
+if (!isDev) {
+    app.use(helmet());
+}
 
 //Middleware 
 app.use(express.urlencoded({ extended: true }));
