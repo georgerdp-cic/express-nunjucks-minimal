@@ -1,4 +1,4 @@
-const { src, dest, parallel, series, watch } = require('gulp');
+const { src, dest, task, series, watch } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
@@ -10,77 +10,59 @@ const pipeline = require('readable-stream').pipeline;
 var sourcemaps = require('gulp-sourcemaps');
 
 //Child tasks
-const generateCss = (cb) => {
+task('generate-css', () => 
     src('./src/sass/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({ style: 'compressed' }).on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(sourcemaps.write('.'))
-        .pipe(dest('./src/public/css/'));
-    
-    cb();
-};
+        .pipe(dest('./src/public/css/'))
+);
 
-const generateJs = (cb) => {
+task('generate-js', () => 
     pipeline(
         src('./src/clientjs/*.js'),
         concat('prod.min.js'),
         uglify(),
         dest('./src/public/js')
-    );
+    )
+);
 
-    cb();
-};
+task('copy-public', () => {
+    return src('./src/public/**').pipe(dest('./dist/public/'));
+});
 
-const copyPublic = (cb) => {
-    src('./src/public/**').pipe(dest('./dist/public/'));
-    cb();
-};
+task('copy-templates', () => {
+    return src('./templates/**').pipe(dest('./dist/templates/'));
+});
 
-const copyTemplates = (cb) => {
-    src('./templates/**').pipe(dest('./dist/templates/'));
-    cb();
-};
-
-const clean = (cb) => {
-    del([
+task('clean', () => {
+    return del([
         './dist',
-        './src/public/js/'
     ]);
-    cb();
-};
+});
 
-const cleanJs = (cb) => {
-    del([
-        './src/public/js/'
-    ]);
-    cb();
-};
-
-const cleanSourcema = () => {
-    del([
+task('clean-sourcemap', () => {
+    return del([
         './dist/public/css/main.css.map',
         './dist/public/js/prod.min.js.map'
     ]);
-    cb();
-};
+});
 
-const watchAll = (cb) => {
+task('watch-all', () => {
     browserSync.init({
         port: 3002,
         proxy: 'http://localhost:8080/',
-        reloadDelay: 500
+        reloadDelay: 1000
     });
 
     watch(['./**/*.ts', './**/*.njk']).on("change", () => setTimeout(() => browserSync.reload(), 1000));
-    watch(['./src/sass/**/*.scss'], series(generateCss)).on("change", browserSync.reload);
-    watch(['./src/clientjs/**/*.js'], series(generateJs)).on("change", browserSync.reload);
-
-    cb();
-};
+    watch(['./src/sass/**/*.scss'], series('generate-css')).on("change", browserSync.reload);
+    watch(['./src/clientjs/**/*.js'], series('generate-js')).on("change", browserSync.reload);
+});
 
 //Primary tasks
-exports.build = series(clean, parallel(generateCss, generateJs), copyPublic, copyTemplates, cleanSourcema);
+task('build', series(['clean', 'generate-css', 'generate-js', 'copy-public', 'copy-templates', 'clean-sourcemap']));
 
-exports.dev = series(clean, parallel(generateCss, generateJs), watchAll);
+task('dev', series(['clean', 'generate-css', 'generate-js', 'watch-all']));
