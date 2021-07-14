@@ -14,6 +14,17 @@ How to start?
 - This project has now Typescript for the server side files, nodemon and Tslint configured
 - Unit test with jest and jsdom
 
+
+                                                                                
+                       === npm audit security report ===                        
+                                                                                
+found 0 vulnerabilities
+ in 1159 scanned packages
+
+node -v 14.17.1
+ npm -v 6.14.13 
+ 
+
 ### New Features
 Dockerfile 
 
