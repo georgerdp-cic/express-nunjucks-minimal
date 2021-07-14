@@ -8,7 +8,7 @@ router.get('/', csrfP, function (req, res) {
     
     res.render('views/index', {
         pageTitle: 'Welcome',
-        headerBodyText: 'Welcome to v0.0.1',
+        headerBodyText: 'Welcome to v1.0.1',
         email: 'george.crisan-cic@ibm.com',
         //cToken: req.csrfToken(),
         tabName: 'home',
