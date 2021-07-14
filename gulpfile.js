@@ -8,7 +8,7 @@ const browserSync = require('browser-sync').create();
 const del = require('del');
 const pipeline = require('readable-stream').pipeline;
 const ts = require('gulp-typescript');
-var sourcemaps = require('gulp-sourcemaps');
+const sourcemaps = require('gulp-sourcemaps');
 
 //Child tasks
 const generateCss = () => 
