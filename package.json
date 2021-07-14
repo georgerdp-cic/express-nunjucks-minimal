@@ -4,7 +4,7 @@
   "description": "Production ready node typescript environment",
   "main": "./src/server.ts",
   "scripts": {
-    "build": "tsc && gulp build",
+    "build": "gulp build",
     "start": "npm run build && node dist/server.js NODE_ENV=production",
     "dev": "concurrently \"nodemon --config nodemon.json src/server.ts\" \"gulp dev\"",
     "test": "jest"
@@ -37,6 +37,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglify": "^3.0.2",
     "jest": "^27.0.6",
     "jsdom": "^16.6.0",

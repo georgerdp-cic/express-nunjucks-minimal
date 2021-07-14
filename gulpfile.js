@@ -7,6 +7,7 @@ const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();
 const del = require('del');
 const pipeline = require('readable-stream').pipeline;
+const ts = require('gulp-typescript');
 var sourcemaps = require('gulp-sourcemaps');
 
 //Child tasks
@@ -35,6 +36,8 @@ const clean = () =>
 const copyPublic = () => 
     src('./src/public/**').pipe(dest('./dist/public/'));
 
+const copyServer = () => 
+    src('./src/serverjs/**').pipe(dest('./dist/'));
 
 const copyTemplates = () => 
     src('./templates/**').pipe(dest('./dist/templates/'));
@@ -45,20 +48,30 @@ const cleanSourcemap = () =>
     ]);
 
 
+
+const compilets = () => {
+    const tsProject = ts.createProject('tsconfig.json');
+
+    const result = tsProject.src().pipe(tsProject());
+
+    return result.js.pipe(dest('./src/serverjs'));
+};
+
 const watchAll = () => {
     browserSync.init({
         port: 3002,
         proxy: 'http://localhost:8080/',
-        reloadDelay: 1000
+        reloadDelay: 300
     });
 
-    watch(['./**/*.ts', './**/*.njk']).on("change", () => setTimeout(() => browserSync.reload(), 1000));
+    watch(['./src/**/*.ts'], series(compilets));
+    watch(['./src/serverjs/**/*.js', './**/*.njk']).on("change", browserSync.reload);
     watch(['./src/sass/**/*.scss'], series(generateCss)).on("change", browserSync.reload);
     watch(['./src/clientjs/**/*.js'], series(generateJs)).on("change", browserSync.reload);
 
 };
 
 //Primary tasks
-exports.build = series(clean, parallel(generateCss, generateJs), copyPublic, copyTemplates, cleanSourcemap);
+exports.build = series(clean, compilets, parallel(generateCss, generateJs), copyPublic, copyTemplates, copyServer, cleanSourcemap);
 
-exports.dev = series(clean, parallel(generateCss, generateJs), watchAll);
+exports.dev = series(clean, compilets, parallel(generateCss, generateJs), watchAll);
