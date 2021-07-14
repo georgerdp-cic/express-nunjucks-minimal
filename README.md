@@ -11,7 +11,7 @@ How to start?
 3. For production <-- npm run build  -->  This will create a directory "dist" with code ready for deployment.
 
 ### Info
-- This project has now Typescript for the server side files, nodemon and Tslint configured
+- This project has now Typescript for the server side JavaScript files
 - Unit test with jest and jsdom
 
 
@@ -24,7 +24,6 @@ found 0 vulnerabilities
 node -v 14.17.1
  npm -v 6.14.13 
  
-
 ### New Features
 Dockerfile 
 
@@ -38,8 +37,5 @@ Then go to:
 http://0.0.0.0:3001/
 
 ### To do:
-
-
-// Set up the lint process
 // Create some demos TDD 
 // Create unit tests
