@@ -1,8 +1,8 @@
 {
   "name": "node-nunjucks-typescript",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Production ready node typescript environment",
-  "main": "server.js",
+  "main": "./src/server.ts",
   "scripts": {
     "build": "tsc && gulp build",
     "start": "npm run build && node dist/server.js NODE_ENV=production",
