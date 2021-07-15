@@ -6,10 +6,10 @@
             : 'js-enabled');
     }
 
-    window.GOVUKFrontend.initAll();
+    if (window && window.GOVUKFrontend) {
+        window.GOVUKFrontend.initAll();
+    }
 
-    
-    
     console.log('Production ready!');
 
 })();
